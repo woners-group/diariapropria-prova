@@ -1,0 +1,51 @@
+# =========================================================
+# Diária Própria — Prova final
+# Tudo listado aqui fica fora do repositório e do deploy.
+# =========================================================
+
+# ---------- Ferramenta interna: gera o hash da senha ----------
+# Não pode ir para o site publicado. Fica só no seu computador.
+ferramentas/
+
+# ---------- Anotações locais com dados de acesso (se você criar) ----------
+acesso-local.txt
+*.senha.txt
+
+# ---------- Sistema operacional ----------
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------- Editores ----------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*~
+
+# ---------- Node / ferramentas (caso venham a ser usados) ----------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.cache/
+dist/
+build/
+.vercel/
+.netlify/
+
+# ---------- Segredos e logs ----------
+.env
+.env.*
+*.log
+
+# ---------- Arquivos temporários e compactados ----------
+*.tmp
+*.bak
+*.zip
+*.rar
+*.7z

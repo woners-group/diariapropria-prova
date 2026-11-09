@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Prova Final · Diária Própria</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#16130f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Design system (cópia do da landing) + componentes + estilos da prova -->
+  <!-- Favicon e ícones do app -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/prova.css">
+</head>
+<body class="prova">
+
+  <div class="hazard hazard--move" aria-hidden="true"></div>
+
+  <header class="prova-bar">
+    <a class="prova-bar__brand" href="#" data-link-site>Diária <b>Própria</b></a>
+    <div class="prova-bar__right">
+      <span class="prova-bar__tag"><i data-icon="hardhat"></i> Prova final</span>
+      <button class="prova-bar__sair" type="button" data-sair hidden><i data-icon="lock"></i> Sair</button>
+    </div>
+  </header>
+
+  <main class="prova-main">
+    <div class="container">
+
+      <!-- TELA 0: LOGIN (configurado em content/acesso.js) -->
+      <section class="screen screen--login" data-screen="login">
+        <div class="login">
+          <div class="login__badge" aria-hidden="true"><i data-icon="hardhat"></i></div>
+          <p class="pill">★ Área do aluno ★</p>
+          <h1 class="title prova-title">Entre para fazer a prova</h1>
+          <p class="subtitle">Exclusivo para quem comprou o plano <strong>Completo</strong>.</p>
+
+          <form class="card login__card" data-form-login novalidate>
+            <label class="field">
+              <span class="field__label"><i data-icon="user"></i> Usuário</span>
+              <input class="field__input" type="text" name="usuario" autocomplete="username"
+                     autocapitalize="none" spellcheck="false" required>
+            </label>
+            <label class="field">
+              <span class="field__label"><i data-icon="lock"></i> Senha</span>
+              <span class="senha">
+                <input class="field__input" type="password" name="senha" autocomplete="current-password" required>
+                <button class="senha__ver" type="button" data-ver-senha aria-label="Mostrar senha" aria-pressed="false"><i data-icon="eye"></i></button>
+              </span>
+            </label>
+            <p class="field__error" data-erro-login role="alert" hidden></p>
+            <button class="btn btn--primary btn--xl btn--block" type="submit" data-entrar>Entrar</button>
+            <p class="login__ajuda" data-ajuda-login></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- TELA 1: NOME -->
+      <section class="screen" data-screen="inicio" hidden>
+        <p class="pill">★ Prova final ★</p>
+        <h1 class="title prova-title">Mostre que você sabe fazer</h1>
+        <p class="subtitle" data-intro></p>
+
+        <div class="inicio">
+          <form class="card" data-form-nome novalidate>
+            <label class="field">
+              <span class="field__label"><i data-icon="user"></i> Seu nome completo</span>
+              <input class="field__input" type="text" name="nome" autocomplete="name" maxlength="60"
+                     placeholder="Ex.: João da Silva" required aria-describedby="nome-ajuda">
+              <small class="field__hint" id="nome-ajuda">É assim que ele vai aparecer no certificado.</small>
+              <small class="field__error" data-erro-nome hidden>Digite seu nome e sobrenome.</small>
+            </label>
+
+            <ul class="checklist checklist--light" data-regras></ul>
+
+            <button class="btn btn--primary btn--xl btn--block" type="submit">Começar a prova</button>
+          </form>
+
+          <!-- prévia do certificado -->
+          <div class="cert-preview" aria-hidden="true">
+            <div class="cert-preview__paper">
+              <span class="cert-preview__brand">Diária Própria</span>
+              <strong>Certificado</strong>
+              <small>de conclusão</small>
+              <span class="cert-preview__label">Certificamos que</span>
+              <em data-preview-nome>Seu Nome Aqui</em>
+              <span class="cert-preview__seal"><i data-icon="award"></i></span>
+            </div>
+            <p class="cert-preview__caption">Sua parede de 15 tijolos: acerte 10 e o certificado é seu.</p>
+            <div class="wall wall--intro" data-wall-intro></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 2: PERGUNTAS -->
+      <section class="screen screen--narrow" data-screen="prova" hidden>
+        <div class="wall-wrap">
+          <div class="wall" data-wall aria-hidden="true"></div>
+        </div>
+        <p class="kicker" data-contador></p>
+
+        <form class="card card--question" data-form-pergunta>
+          <fieldset>
+            <legend class="question" data-pergunta></legend>
+            <div class="options" data-opcoes></div>
+          </fieldset>
+          <p class="field__error" data-erro-resposta hidden>Escolha uma alternativa para continuar.</p>
+
+          <div class="nav">
+            <button class="btn btn--ghost" type="button" data-voltar>Voltar</button>
+            <button class="btn btn--primary" type="submit" data-proxima>Próxima</button>
+          </div>
+          <p class="atalhos" id="atalhos">Dica: use as teclas <kbd>A</kbd>–<kbd>D</kbd> e <kbd>Enter</kbd></p>
+        </form>
+      </section>
+
+      <!-- TELA 3: RESULTADO -->
+      <section class="screen screen--narrow" data-screen="resultado" hidden>
+        <div class="resultado-topo">
+          <div class="score" data-score>
+            <span data-score-pct>0%</span>
+            <small data-score-acertos>0 de 15</small>
+          </div>
+          <div class="carimbo" data-carimbo hidden aria-hidden="true">Aprovado</div>
+        </div>
+        <h2 class="title prova-title" data-resultado-titulo></h2>
+        <p class="subtitle" data-resultado-texto></p>
+
+        <div class="wall wall--result" data-wall-result aria-hidden="true"></div>
+        <p class="wall-legenda"><span class="tijolo is-certo"></span> acerto <span class="tijolo is-errado"></span> erro</p>
+
+        <div class="result-actions">
+          <button class="btn btn--primary btn--xl" type="button" data-baixar hidden><i data-icon="download"></i> Baixar meu certificado (PDF)</button>
+          <button class="btn btn--ghost" type="button" data-refazer>Refazer a prova</button>
+        </div>
+
+        <div class="revisao" data-revisao hidden>
+          <p class="kicker">Revise estes assuntos antes de tentar de novo</p>
+          <ol data-revisao-lista></ol>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span data-year></span> Diária Própria · Curso livre</p>
+  </footer>
+
+  <script src="assets/vendor/jspdf/jspdf.umd.min.js"></script>
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/sha256.js"></script>
+  <script src="content/acesso.js"></script>
+  <script src="content/perguntas.js"></script>
+  <script src="assets/js/prova.js"></script>
+  <script src="assets/js/acesso.js"></script>
+</body>
+</html>
